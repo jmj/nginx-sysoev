@@ -1,4 +1,177 @@
 
+Changes with nginx 0.8.29                                        30 Nov 2009
+
+    *) Change: now the "009" status code is written to an access log for
+       proxied HTTP/0.9 responses.
+
+    *) Feature: the "addition_types", "charset_types", "gzip_types",
+       "ssi_types", "sub_filter_types", and "xslt_types" directives support
+       an "*" parameter.
+
+    *) Feature: GCC 4.1+ built-in atomic operations usage.
+       Thanks to W-Mark Kubacki.
+
+    *) Feature: the --with-libatomic[=DIR] option in the configure.
+       Thanks to W-Mark Kubacki.
+
+    *) Bugfix: listen unix domain socket had limited access rights.
+
+    *) Bugfix: cached HTTP/0.9 responses were handled incorrectly.
+
+    *) Bugfix: regular expression named captures given by "?P<...>" did not
+       work in a "server_name" directive.
+       Thanks to Maxim Dounin.
+
+
+Changes with nginx 0.8.28                                        23 Nov 2009
+
+    *) Bugfix: nginx could not be built with the --without-pcre parameter;
+       the bug had appeared in 0.8.25.
+
+
+Changes with nginx 0.8.27                                        17 Nov 2009
+
+    *) Bugfix: regular expressions did not work in nginx/Windows; the bug
+       had appeared in 0.8.25.
+
+
+Changes with nginx 0.8.26                                        16 Nov 2009
+
+    *) Bugfix: in captures usage in "rewrite" directive; the bug had
+       appeared in 0.8.25.
+
+    *) Bugfix: nginx could not be built without the --with-debug option;
+       the bug had appeared in 0.8.25.
+
+
+Changes with nginx 0.8.25                                        16 Nov 2009
+
+    *) Change: now no message is written in an error log if a variable is
+       not found by $r->variable() method.
+
+    *) Feature: the ngx_http_degradation_module.
+
+    *) Feature: regular expression named captures.
+
+    *) Feature: now URI part is not required a "proxy_pass" directive if
+       variables are used.
+
+    *) Feature: now the "msie_padding" directive works for Chrome too.
+
+    *) Bugfix: a segmentation fault occurred in a worker process on low
+       memory condition; the bug had appeared in 0.8.18.
+
+    *) Bugfix: nginx sent gzipped responses to clients those do not support
+       gzip, if "gzip_static on" and "gzip_vary off"; the bug had appeared
+       in 0.8.16.
+
+
+Changes with nginx 0.8.24                                        11 Nov 2009
+
+    *) Bugfix: nginx always added "Content-Encoding: gzip" response header
+       line in 304 responses sent by ngx_http_gzip_static_module.
+
+    *) Bugfix: nginx could not be built without the --with-debug option;
+       the bug had appeared in 0.8.23.
+
+    *) Bugfix: the "unix:" parameter of the "set_real_ip_from" directive
+       inherited incorrectly from previous level.
+
+    *) Bugfix: in resolving empty name.
+
+
+Changes with nginx 0.8.23                                        11 Nov 2009
+
+    *) Security: now SSL/TLS renegotiation is disabled.
+       Thanks to Maxim Dounin.
+
+    *) Bugfix: listen unix domain socket did not inherit while online
+       upgrade.
+
+    *) Bugfix: the "unix:" parameter of the "set_real_ip_from" directive
+       did not without yet another directive with any IP address.
+
+    *) Bugfix: segmentation fault and infinite looping in resolver.
+
+    *) Bugfix: in resolver.
+       Thanks to Artem Bokhan.
+
+
+Changes with nginx 0.8.22                                        03 Nov 2009
+
+    *) Feature: the "proxy_bind", "fastcgi_bind", and "memcached_bind"
+       directives.
+
+    *) Feature: the "access" and the "deny" directives support IPv6.
+
+    *) Feature: the "set_real_ip_from" directive supports IPv6 addresses in
+       request headers.
+
+    *) Feature: the "unix:" parameter of the "set_real_ip_from" directive.
+
+    *) Bugfix: nginx did not delete unix domain socket after configuration
+       testing.
+
+    *) Bugfix: nginx deleted unix domain socket while online upgrade.
+
+    *) Bugfix: the "!-x" operator did not work.
+       Thanks to Maxim Dounin.
+
+    *) Bugfix: a segmentation fault might occur in a worker process, if
+       limit_rate was used in HTTPS server.
+       Thanks to Maxim Dounin.
+
+    *) Bugfix: a segmentation fault might occur in a worker process while
+       $limit_rate logging.
+       Thanks to Maxim Dounin.
+
+    *) Bugfix: a segmentation fault might occur in a worker process, if
+       there was no "listen" directive in "server" block; the bug had
+       appeared in 0.8.21.
+
+
+Changes with nginx 0.8.21                                        26 Oct 2009
+
+    *) Feature: now the "-V" switch shows TLS SNI support.
+
+    *) Feature: the "listen" directive of the HTTP module supports unix
+       domain sockets.
+       Thanks to Hongli Lai.
+
+    *) Feature: the "default_server" parameter of the "listen" directive.
+
+    *) Feature: now a "default" parameter is not required to set listen
+       socket options.
+
+    *) Bugfix: nginx did not support dates in 2038 year on 32-bit platforms;
+
+    *) Bugfix: socket leak; the bug had appeared in 0.8.11.
+
+
+Changes with nginx 0.8.20                                        14 Oct 2009
+
+    *) Change: now default SSL ciphers are "HIGH:!ADH:!MD5".
+
+    *) Bugfix: the ngx_http_autoindex_module did not show the trailing
+       slash in links to a directory; the bug had appeared in 0.7.15.
+
+    *) Bugfix: nginx did not close a log file set by the --error-log-path
+       configuration option; the bug had appeared in 0.7.53.
+
+    *) Bugfix: nginx did not treat a comma as separator in the
+       "Cache-Control" backend response header line.
+
+    *) Bugfix: nginx/Windows might not create temporary file, a cache file,
+       or "proxy/fastcgi_store"d file if a worker had no enough access
+       rights for top level directories.
+
+    *) Bugfix: the "Set-Cookie" and "P3P" FastCGI response header lines
+       were not hidden while caching if no "fastcgi_hide_header" directives
+       were used with any parameters.
+
+    *) Bugfix: nginx counted incorrectly disk cache size.
+
+
 Changes with nginx 0.8.19                                        06 Oct 2009
 
     *) Change: now SSLv2 protocol is disabled by default.
